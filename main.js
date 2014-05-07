@@ -1,3 +1,13 @@
+/**
+ * Research tools for online legal research
+ * This script highlights concurring and dissenting opinions (including concurring in part and dissenting in part) in Westlaw.
+ * It also turns Texas state court case numbers into clickable links to the TAMES search results.
+ * 
+ * This code is in beta. It is NOT LICENSED for any use except by express written permission of the author.
+ * 
+ * (c) 2014 Ed Cottrell
+ */
+
 /* A couple of global variables */
 var dissentBorder = '4px solid #ff3333',
     concurBorder = '4px solid #ffff33',

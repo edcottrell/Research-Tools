@@ -1,1 +1,1 @@
-var script = document.createElement("SCRIPT"); script.src = 'https://raw.githubusercontent.com/edcottrell/Research-Tools/master/main.js'; script.type = 'text/javascript'; document.getElementsByTagName("head")[0].appendChild(script);
+var script = document.createElement('SCRIPT'); script.src = 'https://raw.githubusercontent.com/edcottrell/Research-Tools/master/main.js'; script.type = 'text/javascript'; document.getElementsByTagName('head')[0].appendChild(script);

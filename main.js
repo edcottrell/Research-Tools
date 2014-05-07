@@ -37,9 +37,9 @@ $(function() { /* Don't run until jQuery is loaded */
     /* See if it's a Texas case */
     var cblock = $('.co_courtBlock');
     if( cblock && cblock.text().match(/(?:Supreme Court|Court of (?:Civil )?Appeals) of Texas/) ) {
-        /* It is, so make the case number clickable */
+        /* It is (either COA or SCTEX), so make the case number clickable */
         var domain = "http://www.search.txcourts.gov/", /* Domain for the searches */
-		    path = "CaseSearch.aspx?coa=cossup"; /* Initialize the URL to use if we cannot do a search */
+	    path = "CaseSearch.aspx?coa=cossup"; /* Initialize the URL to use if we cannot do a search */
             caseNoBlock = $('.co_docketBlock');
         if(caseNoBlock) {
             var caseNo = RealCaseNumberFromString(caseNoBlock.text());
@@ -53,6 +53,34 @@ $(function() { /* Don't run until jQuery is loaded */
                     window.open(domain+path);
                 });
         }
+    }
+    else if( cblock && cblock.text().match(/Court of Criminal Appeals of Texas/) ) {
+	/* It's a Texas CCA case; set up a form to submit the search */
+	var caseNoBlock = $('.co_docketBlock');
+	if(caseNoBlock) {
+		if(!document.getElementsByName('txCCAForm').length) {
+			var txCCAForm = document.createElement('form');
+			txCCAForm.name = 'txCCAForm';
+			txCCAForm.action = 'http://www.cca.courts.state.tx.us/opinions/casesearch.asp';
+			txCCAForm.target = '_blank';
+			document.getElementsByTagName("body")[0].appendChild(txCCAForm);
+			if(!document.getElementsByName('CaseNumberNo').length) {
+				var CaseNumberNo = document.createElement('input');
+				CaseNumberNo.name = 'CaseNumberNo';
+				document.getElementsByName("txCCAForm")[0].appendChild(CaseNumberNo);
+			}
+		}
+		var caseNo = RealCaseNumberFromString(caseNoBlock.text());
+		/* If the case number is non-empty, get the URL for the search page. */
+		if(caseNo != "") {
+			caseNoBlock
+				.css({color:'blue', 'text-decoration' : 'underline', 'cursor': 'pointer'})
+				.on('click', function() {
+					document.getElementsByName("CaseNumberNo")[0].value = caseNo;
+					document.getElementsByName("txCCAForm")[0].submit();
+				});
+		}
+	}
     }
     
     /* Highlight concurrences and dissents */

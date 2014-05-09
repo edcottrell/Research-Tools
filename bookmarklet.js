@@ -1,1 +1,1 @@
-javascript:(%20(function()%20{var%20script%20=%20document.createElement("SCRIPT");%20script.src%20=%20"https://raw.githubusercontent.com/edcottrell/Research-Tools/master/main.js";%20script.type%20=%20"text/javascript";%20document.getElementsByTagName("head")[0].appendChild(script)}%20)())
+javascript:(%20(function()%20{var%20script%20=%20document.createElement("SCRIPT");%20script.src%20=%20"http://wordsmithsoftware.com/github/Research-Tools/master/main.js";%20script.type%20=%20"text/javascript";%20document.getElementsByTagName("head")[0].appendChild(script)}%20)())

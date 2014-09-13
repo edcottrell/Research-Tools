@@ -15,7 +15,9 @@ var dissentBorder = '4px solid #ff3333',
     concurPadding = '4px',
     dissentBG = '#fff3f3',
     concurBG = '#fffff3',
-    starPageSize = '130%';
+    starPageSize = '150%',
+    starPageColor = '#ffffff',
+    starPageBG = '#0000ff';
 
 /* Get the real Texas case number (no leading "No.", for example) from a string */
 function RealCaseNumberFromString(caseNo) {
@@ -95,5 +97,11 @@ $(function() { /* Don't run until jQuery is loaded */
         'background-color': concurBG});
     
     /* Make star pages easier to find */
-    $('.co_starPage').css('font-size', starPageSize);
+    $('.co_starPage').css(
+    	{
+    		fontSize: starPageSize,
+    		color: starPageColor,
+    		backgroundColor: starPageBG
+    	}
+    );
 });

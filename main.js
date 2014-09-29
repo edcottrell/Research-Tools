@@ -104,4 +104,9 @@ $(function() { /* Don't run until jQuery is loaded */
     		backgroundColor: starPageBG
     	}
     );
+    /* Preserve star page formatting even when the page is part of highlighted text */
+    $('body').append('<style> .co_starPage .co_hl { ' + 
+    	'color: ' + starPageColor + '; ' +
+    	'background-color: ' + starPageBG + ' !important;' +
+	'}</style>');
 });

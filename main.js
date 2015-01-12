@@ -109,4 +109,30 @@ $(function() { /* Don't run until jQuery is loaded */
     	'color: ' + starPageColor + '; ' +
     	'background-color: ' + starPageBG + ' !important;' +
 	'}</style>');
+    
+    /**
+     * Fix spacing and formatting issues, particularly in citations
+     * Fixes include:
+     *   - no space after multi-character text (e.g., "Tex.2012")
+     *   - hyphen instead of em dash in "Tex. App.-[city]"
+     *   - smart single quotes
+     */
+    $('.co_contentBlock *') // only look in the opinion, not elsewhere on the page
+        .not('html,body,head,script,img,iframe,style,.co_contentBlock,.x_opinionBody') // limit to smaller elements, not big, organizational elements
+        .not('[href],[src]') // exclude anything with an href or src property; they will result in false matches
+        .each(
+            function() {
+                var $html = jQuery(this).html();
+                if ($html.match(/'|([a-z]{2,}\.)(?!$|\s|[\)\]\u2014-])(?=[^>]*?(?:<|$))|Tex\.\s*App\./gi)) { //limit to elements with text we care about
+                    $(this)
+                        .html(
+                            $html
+                                .replace(/([a-z]{2,}\.)(?!$|\s|[\)\]\u2014,-])(?=[^>]*?(?:<|$))/gi, '$1 ') // fix, for example, Tex.App., Civ.P., Tex.2012, etc.
+                                .replace(/Tex\. App\.-/g, 'Tex. App.&#8212;') // fix em dashes in Tex. App. ....
+                                .replace(/([^\s])'/g, '$1&#8217;') // fix apostrophes
+                                .replace(/(^|\s)'/g, '$1&#8216;') // fix opening single quotes
+                        )
+                }
+            }
+        )
 });

@@ -104,11 +104,20 @@ $(function() { /* Don't run until jQuery is loaded */
     		backgroundColor: starPageBG
     	}
     );
-    /* Preserve star page formatting even when the page is part of highlighted text */
-    $('body').append('<style> .co_starPage .co_hl { ' + 
-    	'color: ' + starPageColor + '; ' +
-    	'background-color: ' + starPageBG + ' !important;' +
-	'}</style>');
+    /* Make star pages easier to find and Preserve star page formatting even when the page is part of highlighted text */
+    $('body').append(
+        ['<style>',
+         '    .co_document .co_starPage {',
+         '        font-size: ' + starPageSize + ';',
+         '        color: ' + starPageColor + ';',
+         '        background-color: ' + starPageBG + ';',
+         '    }',
+         '    .co_starPage .co_hl {',
+         '        color: ' + starPageColor + ';',
+         '        background-color: ' + starPageBG + ' !important;',
+         '    }',
+         '</style>'].join("\n")
+    );
     
     /**
      * Fix spacing and formatting issues, particularly in citations
@@ -134,5 +143,5 @@ $(function() { /* Don't run until jQuery is loaded */
                         )
                 }
             }
-        )
+        );
 });

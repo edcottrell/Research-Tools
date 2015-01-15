@@ -5,7 +5,7 @@
  * 
  * This code is in beta. It is NOT LICENSED for any use except by express written permission of the author.
  * 
- * (c) 2014 Ed Cottrell
+ * (c) 2014, 2015 Ed Cottrell
  */
 
 /* A couple of global variables */
@@ -17,7 +17,12 @@ var dissentBorder = '4px solid #ff3333',
     concurBG = '#fffff3',
     starPageSize = '150%',
     starPageColor = '#ffffff',
-    starPageBG = '#0000ff';
+    starPageBG = '#0000ff',
+    footnoteReferenceSize = '100%',
+    footnoteReferenceBackgroundColor = '#ffdddd',
+    footnoteReferenceBorderThickness = '1px',
+    footnoteReferenceBorderType = 'solid',
+    footnoteReferenceBorderColor = '#ffcccc';
 
 /* Get the real Texas case number (no leading "No.", for example) from a string */
 function RealCaseNumberFromString(caseNo) {
@@ -115,6 +120,11 @@ $(function() { /* Don't run until jQuery is loaded */
          '    .co_starPage .co_hl {',
          '        color: ' + starPageColor + ';',
          '        background-color: ' + starPageBG + ' !important;',
+         '    }',
+         '    .co_footnoteReference {',
+         '        font-size: ' + footnoteReferenceSize + ';',
+         '        background-color: ' + footnoteReferenceBackgroundColor + ';',
+         '        border: ' + footnoteReferenceBorderThickness + ' ' + footnoteReferenceBorderType + ' ' + footnoteReferenceBorderColor + ';',
          '    }',
          '</style>'].join("\n")
     );
